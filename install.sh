@@ -43,6 +43,18 @@ install() {
 }
 
 
+setup_ssl() {
+	ssl_key_dir=/etc/ldap/ssl
+	ssl_key_file=${ssl_key_dir}/server.pem
+
+	if [ ! -f ${ssl_key_file} ]; then
+		mkdir -p ${ssl_key_dir}
+		openssl req -newkey rsa:1024 -x509 -nodes \
+			-out ${ssl_key_file} -keyout ${ssl_key_file} -days 3650
+	fi
+}
+
+
 uninstall() {
 	apt-get purge slapd
 }
