@@ -1,0 +1,21 @@
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+replace: olcSuffix
+olcSuffix: dc=povilasb,dc=com
+
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+replace: olcRootDN
+olcRootDN: cn=admin,dc=povilasb,dc=com
+
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+delete: olcAccess
+
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+add: olcAccess
+olcAccess: {0}to attrs=userPassword,shadowLastChange by self write by anonymou
+ s auth by dn="cn=admin,dc=povilasb,dc=com" write by * none
+olcAccess: {1}to dn.base="" by * read
+olcAccess: {2}to * by self write by dn="cn=admin,dc=povilasb,dc=com" write by * read

@@ -1,0 +1,40 @@
+# Test organization.
+dn: dc=povilasb,dc=com
+objectClass: organization
+objectClass: dcObject
+dc: povilasb
+o: testorg
+
+
+# Unix users organizational unit.
+dn: ou=unix_users,dc=povilasb,dc=com
+ou: unix_users
+description: Unix users.
+objectClass: organizationalUnit
+
+
+# Developers users group.
+dn: cn=devs, ou=unix_users, dc=povilasb,dc=com
+objectClass: posixGroup
+gidNumber: 900
+memberUid: devs1
+cn: devs
+
+
+# Developer 1 user.
+dn: uid=dev1, ou=unix_users, dc=povilasb,dc=com
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetorgperson
+objectClass: posixAccount
+objectClass: shadowAccount
+givenName: Povilas Balciunas
+sn: Balciunas
+uid: dev1
+cn: Povilas Balciunas
+homeDirectory: /home/dev1
+loginShell: /bin/bash
+gidNumber: 5000
+uidNumber: 5123
+# Password is 'dev1'.
+userPassword: {CRYPT}{CBp1uMaPfkPI
